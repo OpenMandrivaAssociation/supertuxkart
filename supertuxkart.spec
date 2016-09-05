@@ -1,7 +1,7 @@
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	0.9.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
@@ -48,7 +48,8 @@ tracks and a reworked user interface.
 %build
 %cmake \
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
-	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name}
+	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
+	-DBUILD_SHARED_LIBS=OFF
 %make
 
 %install
