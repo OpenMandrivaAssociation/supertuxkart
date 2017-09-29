@@ -8,6 +8,7 @@ Url:		http://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{name}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
 Patch0:		supertuxkart-0.9-static.patch
+Patch1:		supertuxkart-0.9-aarch64.patch
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	jpeg-devel
