@@ -44,7 +44,7 @@ tracks and a reworked user interface.
 
 %prep
 %setup -q
-%patch0 -p1
+%apply_patches
 
 %build
 %cmake \
