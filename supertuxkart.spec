@@ -1,7 +1,7 @@
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	0.9.2
-Release:	2
+Version:	0.9.3
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
@@ -32,13 +32,13 @@ featuring Tux and friends. SuperTuxKart contains new characters, new
 tracks and a reworked user interface.
 
 %files
-%doc AUTHORS CHANGELOG.md README.md TODO.md
+%doc CHANGELOG.md README.md
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/appdata/supertuxkart.appdata.xml
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}_*.png
+%{_datadir}/pixmaps/%{name}.png
 
 #----------------------------------------------------------------------------
 
@@ -48,6 +48,7 @@ tracks and a reworked user interface.
 
 %build
 %cmake \
+	-DBUILD_RECORDER:BOOL=OFF \
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
 	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
 	-DBUILD_SHARED_LIBS=OFF
@@ -57,9 +58,8 @@ tracks and a reworked user interface.
 %makeinstall_std -C build
 
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48,64x64,128x128}/apps
-convert -scale 16x16 data/%{name}_32.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-convert data/%{name}_32.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-convert -scale 48x48 data/%{name}_128.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
+convert -scale 16x16 data/%{name}_48.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+convert -scale 32x32 data/%{name}_128.png %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+cp data/%{name}_48.png %{buildroot}%{_iconsdir}/hicolor/48x48/apps/%{name}.png
 convert -scale 64x64 data/%{name}_128.png %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{name}.png
-convert data/%{name}_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
-
+cp data/%{name}_128.png %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
