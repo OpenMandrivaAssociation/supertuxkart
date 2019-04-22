@@ -46,7 +46,7 @@ tracks and a reworked user interface.
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
-%{_datadir}/appdata/supertuxkart.appdata.xml
+%{_datadir}/metainfo/%{name}.appdata.xml
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 
@@ -56,16 +56,23 @@ tracks and a reworked user interface.
 %setup -q
 %apply_patches
 
+# remove bundled library, use system instead.
+rm -rf lib/{enet,glew,jpeglib,libpng,zlib}
+
+
 %build
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
 	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
-	-DBUILD_SHARED_LIBS=OFF
-%make
+	-DBUILD_SHARED_LIBS=OFF \
+	-DUSE_SYSTEM_ENET=ON \
+        -DUSE_SYSTEM_GLEW=ON
+	
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48,64x64,128x128}/apps
 convert -scale 16x16 data/%{name}_48.png %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
