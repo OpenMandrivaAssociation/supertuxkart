@@ -50,6 +50,10 @@ tracks and a reworked user interface.
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 
+#until wiiuse is not updated and stay in contrib repo we use bundled lib... :/
+%{_includedir}/wiiuse.h
+%{_libdir}/libwiiuse.a
+
 #----------------------------------------------------------------------------
 
 %prep
