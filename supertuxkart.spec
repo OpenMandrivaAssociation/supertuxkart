@@ -1,3 +1,8 @@
+%ifarch %{ix86}
+%define _disable_ld_no_undefined 1
+%define _disable_lto 1
+%endif
+
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	1.0
@@ -63,6 +68,10 @@ rm -rf lib/{enet,glew,jpeglib,libpng,wiiuse,zlib}
 
 
 %build
+%ifarch %{ix86}
+export CC=gcc
+export CXX=g++
+%endif
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
