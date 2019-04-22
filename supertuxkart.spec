@@ -35,6 +35,7 @@ BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:  wiiuse-devel
 
 %description
 SuperTuxKart is an improved version of TuxKart, a kart racing game
@@ -50,9 +51,6 @@ tracks and a reworked user interface.
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 
-#until wiiuse is not updated and stay in contrib repo we use bundled lib... :/
-%{_includedir}/wiiuse.h
-%{_libdir}/libwiiuse.a
 
 #----------------------------------------------------------------------------
 
@@ -61,7 +59,7 @@ tracks and a reworked user interface.
 %apply_patches
 
 # remove bundled library, use system instead.
-rm -rf lib/{enet,glew,jpeglib,libpng,zlib}
+rm -rf lib/{enet,glew,jpeglib,libpng,wiiuse,zlib}
 
 
 %build
@@ -71,7 +69,8 @@ rm -rf lib/{enet,glew,jpeglib,libpng,zlib}
 	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DUSE_SYSTEM_ENET=ON \
-        -DUSE_SYSTEM_GLEW=ON
+        -DUSE_SYSTEM_GLEW=ON \
+	-DUSE_SYSTEM_WIIUSE=ON
 	
 %make_build
 
