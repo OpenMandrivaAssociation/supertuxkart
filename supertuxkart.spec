@@ -40,7 +40,11 @@ BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	glesv3-devel
 BuildRequires:  wiiuse-devel
+
+# dirty fix for now...
+Requires:	wiiuse-devel
 
 %description
 SuperTuxKart is an improved version of TuxKart, a kart racing game
