@@ -41,6 +41,7 @@ BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
 #BuildRequires:	glesv3-devel
 BuildRequires:  wiiuse-devel
+BuildRequires:  pkgconfig(sqlite3)
 
 # dirty fix for now...
 Requires:	wiiuse-devel
