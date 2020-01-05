@@ -5,15 +5,14 @@
 
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.0
-Release:	2
+Version:	1.0.1
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{name}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
-#Patch0:		supertuxkart-0.9-static.patch
-#Patch1:		supertuxkart-0.9-aarch64.patch
+
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	jpeg-devel
@@ -40,7 +39,7 @@ BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
-BuildRequires:	glesv3-devel
+#BuildRequires:	glesv3-devel
 BuildRequires:  wiiuse-devel
 
 # dirty fix for now...
@@ -65,7 +64,7 @@ tracks and a reworked user interface.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 # remove bundled library, use system instead.
 rm -rf lib/{enet,glew,jpeglib,libpng,wiiuse,zlib}
