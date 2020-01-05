@@ -63,7 +63,7 @@ tracks and a reworked user interface.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
+%setup -qn %{name}-%{version}-src
 %autopatch -p1
 
 # remove bundled library, use system instead.
