@@ -65,7 +65,7 @@ tracks and a reworked user interface.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 # remove bundled library, use system instead.
 rm -rf lib/{enet,glew,jpeglib,libpng,wiiuse,zlib}
