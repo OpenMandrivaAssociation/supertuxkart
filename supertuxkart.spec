@@ -68,7 +68,7 @@ tracks and a reworked user interface.
 %autopatch -p1
 
 # remove bundled library, use system instead.
-rm -rf lib/{enet,glew,jpeglib,libpng,wiiuse,zlib}
+rm -rf lib/{glew,jpeglib,libpng,wiiuse,zlib}
 
 
 %build
@@ -81,7 +81,7 @@ export CXX=g++
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
 	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
 	-DBUILD_SHARED_LIBS=OFF \
-	-DUSE_SYSTEM_ENET=ON \
+	-DUSE_SYSTEM_ENET=OFF \
         -DUSE_SYSTEM_GLEW=ON \
 	-DUSE_SYSTEM_WIIUSE=ON \
 	-DOpenGL_GL_PREFERENCE=GLVND
