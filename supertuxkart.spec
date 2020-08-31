@@ -3,19 +3,22 @@
 %define _disable_lto 1
 %endif
 
+%define tarname SuperTuxKart
+
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.1
-Release:	2
+Version:	1.2
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/supertuxkart/%{name}-%{version}-src.tar.xz
+Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
 
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	jpeg-devel
+BuildRequires:  mcpp-devel
 BuildRequires:	pkgconfig(bluez)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:	pkgconfig(freealut)
@@ -32,6 +35,7 @@ BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:  pkgconfig(sdl2)
 BuildRequires:	pkgconfig(vorbis)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
@@ -64,7 +68,7 @@ tracks and a reworked user interface.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{name}-%{version}-src
+%setup -qn %{tarname}-%{version}-src
 %autopatch -p1
 
 # remove bundled library, use system instead.
