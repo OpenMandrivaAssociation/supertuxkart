@@ -3,6 +3,8 @@
 %define _disable_lto 1
 %endif
 
+%define tarname SuperTuxKart
+
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	1.2
@@ -10,7 +12,7 @@ Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/supertuxkart/%{name}-%{version}-src.tar.xz
+Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
 
 BuildRequires:	cmake
@@ -66,7 +68,7 @@ tracks and a reworked user interface.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{name}-%{version}-src
+%setup -qn %{tarname}-%{version}-src
 %autopatch -p1
 
 # remove bundled library, use system instead.
