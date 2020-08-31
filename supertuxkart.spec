@@ -5,8 +5,8 @@
 
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.1
-Release:	2
+Version:	1.2
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
@@ -16,6 +16,7 @@ Source100:	%{name}.rpmlintrc
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	jpeg-devel
+BuildRequires:  mcpp-devel
 BuildRequires:	pkgconfig(bluez)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:	pkgconfig(freealut)
@@ -32,6 +33,7 @@ BuildRequires:  pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:  pkgconfig(sdl2)
 BuildRequires:	pkgconfig(vorbis)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-cursor)
