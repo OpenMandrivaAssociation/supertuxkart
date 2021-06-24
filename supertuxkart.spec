@@ -8,47 +8,42 @@
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	1.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
-
+Patch0:		https://src.fedoraproject.org/rpms/supertuxkart/raw/rawhide/f/61833c9c26da5520f2eaa02f2458971ba07f2aad.patch
 BuildRequires:	cmake
 BuildRequires:	imagemagick
-BuildRequires:	jpeg-devel
-BuildRequires:  mcpp-devel
+BuildRequires:	mcpp-devel
 BuildRequires:	pkgconfig(bluez)
-BuildRequires:  pkgconfig(egl)
+BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freealut)
 BuildRequires:	pkgconfig(freetype2)
-BuildRequires:	pkgconfig(fribidi)
 BuildRequires:	pkgconfig(gl)
-BuildRequires:  pkgconfig(glesv2)
-BuildRequires:  pkgconfig(glew)
+BuildRequires:	pkgconfig(glesv2)
+BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libcrypto)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libenet)
-BuildRequires:  pkgconfig(libjpeg)
+BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libpng)
 BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(openssl)
-BuildRequires:  pkgconfig(sdl2)
+BuildRequires:	pkgconfig(sdl2)
 BuildRequires:	pkgconfig(vorbis)
-BuildRequires:  pkgconfig(wayland-client)
-BuildRequires:  pkgconfig(wayland-cursor)
-BuildRequires:  pkgconfig(wayland-egl)
-BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:	pkgconfig(wayland-client)
+BuildRequires:	pkgconfig(wayland-cursor)
+BuildRequires:	pkgconfig(wayland-egl)
+BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
 #BuildRequires:	glesv3-devel
-BuildRequires:  wiiuse-devel
-BuildRequires:  pkgconfig(sqlite3)
-
-# dirty fix for now...
-Requires:	wiiuse-devel
+BuildRequires:	wiiuse-devel
+BuildRequires:	pkgconfig(sqlite3)
 
 %description
 SuperTuxKart is an improved version of TuxKart, a kart racing game
@@ -63,7 +58,6 @@ tracks and a reworked user interface.
 %{_datadir}/metainfo/%{name}.appdata.xml
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
-
 
 #----------------------------------------------------------------------------
 
@@ -86,10 +80,10 @@ export CXX=g++
 	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DUSE_SYSTEM_ENET=OFF \
-        -DUSE_SYSTEM_GLEW=ON \
+	-DUSE_SYSTEM_GLEW=ON \
 	-DUSE_SYSTEM_WIIUSE=ON \
 	-DOpenGL_GL_PREFERENCE=GLVND
-	
+
 %make_build
 
 %install
