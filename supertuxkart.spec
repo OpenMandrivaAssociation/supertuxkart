@@ -14,7 +14,7 @@ Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
-Patch0:		https://src.fedoraproject.org/rpms/supertuxkart/raw/rawhide/f/61833c9c26da5520f2eaa02f2458971ba07f2aad.patch
+
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	mcpp-devel
