@@ -57,7 +57,7 @@ tracks and a reworked user interface.
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/metainfo/%{name}.appdata.xml
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
+#{_datadir}/pixmaps/%{name}.png
 
 #----------------------------------------------------------------------------
 
