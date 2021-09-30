@@ -7,14 +7,14 @@
 
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.2
-Release:	2
+Version:	1.3
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
-Patch0:		https://src.fedoraproject.org/rpms/supertuxkart/raw/rawhide/f/61833c9c26da5520f2eaa02f2458971ba07f2aad.patch
+
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	mcpp-devel
@@ -57,7 +57,7 @@ tracks and a reworked user interface.
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/metainfo/%{name}.appdata.xml
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
+#{_datadir}/pixmaps/%{name}.png
 
 #----------------------------------------------------------------------------
 
