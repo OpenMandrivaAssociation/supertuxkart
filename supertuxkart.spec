@@ -8,7 +8,7 @@
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	1.3
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
@@ -44,6 +44,10 @@ BuildRequires:	pkgconfig(zlib)
 #BuildRequires:	glesv3-devel
 BuildRequires:	wiiuse-devel
 BuildRequires:	pkgconfig(sqlite3)
+
+# Don't remove this requires. Just don't delete it or the game won't start. 
+# Once someone starts 'cleaning the mess', let check first if the game is still working after this cleaning before commiting. 
+Requires:	wiiuse-devel
 
 %description
 SuperTuxKart is an improved version of TuxKart, a kart racing game
