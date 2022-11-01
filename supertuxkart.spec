@@ -78,6 +78,7 @@ rm -rf lib/{glew,jpeglib,libpng,wiiuse,zlib}
 export CC=gcc
 export CXX=g++
 %endif
+export LDFLAGS="%{optflags} -lcurl"
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
