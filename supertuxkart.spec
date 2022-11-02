@@ -7,8 +7,8 @@
 
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.3
-Release:	2
+Version:	1.4
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
@@ -41,6 +41,7 @@ BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	angelscript-devel
 #BuildRequires:	glesv3-devel
 BuildRequires:	wiiuse-devel
 BuildRequires:	pkgconfig(sqlite3)
@@ -78,6 +79,7 @@ rm -rf lib/{glew,jpeglib,libpng,wiiuse,zlib}
 export CC=gcc
 export CXX=g++
 %endif
+export LDFLAGS="%{optflags} -lcurl"
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
 	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
@@ -86,6 +88,7 @@ export CXX=g++
 	-DUSE_SYSTEM_ENET=OFF \
 	-DUSE_SYSTEM_GLEW=ON \
 	-DUSE_SYSTEM_WIIUSE=ON \
+	-DUSE_SYSTEM_ANGELSCRIPT=ON \
 	-DOpenGL_GL_PREFERENCE=GLVND
 
 %make_build
