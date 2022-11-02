@@ -41,6 +41,7 @@ BuildRequires:	pkgconfig(wayland-egl)
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	angelscript-devel
 #BuildRequires:	glesv3-devel
 BuildRequires:	wiiuse-devel
 BuildRequires:	pkgconfig(sqlite3)
@@ -87,6 +88,7 @@ export LDFLAGS="%{optflags} -lcurl"
 	-DUSE_SYSTEM_ENET=OFF \
 	-DUSE_SYSTEM_GLEW=ON \
 	-DUSE_SYSTEM_WIIUSE=ON \
+	-DUSE_SYSTEM_ANGELSCRIPT=ON \
 	-DOpenGL_GL_PREFERENCE=GLVND
 
 %make_build
