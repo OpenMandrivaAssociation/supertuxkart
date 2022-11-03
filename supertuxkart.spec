@@ -75,10 +75,10 @@ rm -rf lib/{glew,jpeglib,libpng,wiiuse,zlib}
 
 
 %build
-%ifarch %{ix86}
+#ifarch %{ix86}
 export CC=gcc
 export CXX=g++
-%endif
+#endif
 export LDFLAGS="%{optflags} -lcurl"
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
