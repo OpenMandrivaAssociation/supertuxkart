@@ -75,10 +75,9 @@ rm -rf lib/{glew,jpeglib,libpng,wiiuse,zlib}
 
 
 %build
-%ifarch %{ix86}
+# Switch to GCC because as of Clang 15.X and SuperTuxKart 1.4, game compiled with clang crashing at launch (after splash screen). GCC fix it.
 export CC=gcc
 export CXX=g++
-%endif
 export LDFLAGS="%{optflags} -lcurl"
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
