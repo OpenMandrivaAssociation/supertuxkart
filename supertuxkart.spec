@@ -8,7 +8,7 @@
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	1.4
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
@@ -57,8 +57,8 @@ tracks and a reworked user interface.
 
 %files
 %doc CHANGELOG.md README.md
-%{_gamesbindir}/%{name}
-%{_gamesdatadir}/%{name}
+%{_bindir}/%{name}
+%{_datadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/metainfo/%{name}.appdata.xml
 %{_datadir}/applications/%{name}.desktop
@@ -82,8 +82,8 @@ export CXX=g++
 export LDFLAGS="%{optflags} -lcurl"
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
-	-DSTK_INSTALL_BINARY_DIR=%{_gamesbindir} \
-	-DSTK_INSTALL_DATA_DIR=%{_gamesdatadir}/%{name} \
+	-DSTK_INSTALL_BINARY_DIR=%{_bindir} \
+	-DSTK_INSTALL_DATA_DIR=%{_datadir}/%{name} \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DUSE_SYSTEM_ENET=OFF \
 	-DUSE_SYSTEM_GLEW=ON \
