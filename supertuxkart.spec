@@ -14,17 +14,18 @@ Group:		Games/Arcade
 Url:		http://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
-
+Patch0:		https://github.com/supertuxkart/stk-code/commit/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	mcpp-devel
+BuildRequires:	astc-encoder-devel
+BuildRequires:	libsquish-devel
 BuildRequires:	pkgconfig(bluez)
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(freealut)
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glesv2)
-BuildRequires:	pkgconfig(glew)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libcrypto)
 BuildRequires:	pkgconfig(libcurl)
@@ -45,10 +46,7 @@ BuildRequires:	angelscript-devel
 #BuildRequires:	glesv3-devel
 BuildRequires:	wiiuse-devel
 BuildRequires:	pkgconfig(sqlite3)
-
-# Don't remove this requires. Just don't delete it or the game won't start. 
-# Once someone starts 'cleaning the mess', let check first if the game is still working after this cleaning before commiting. 
-Requires:	wiiuse-devel
+BuildRequires:	pkgconfig(shaderc)
 
 %description
 SuperTuxKart is an improved version of TuxKart, a kart racing game
@@ -67,27 +65,26 @@ tracks and a reworked user interface.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn %{tarname}-%{version}-src
-%autopatch -p1
+%autosetup -n %{tarname}-%{version}-src -p1
 
 # remove bundled library, use system instead.
-rm -rf lib/{glew,jpeglib,libpng,wiiuse,zlib}
-
+rm -rf lib/{jpeglib,libpng,wiiuse,zlib,libsquish,mcpp,angelscript,shaderc}
 
 %build
 # Switch to GCC because as of Clang 15.X and SuperTuxKart 1.4, game compiled with clang crashing at launch (after splash screen). GCC fix it.
-export CC=gcc
-export CXX=g++
-export LDFLAGS="%{optflags} -lcurl"
+#export CC=gcc
+#export CXX=g++
+export LDFLAGS="%{build_ldflags} -lcurl"
+
 %cmake \
 	-DBUILD_RECORDER:BOOL=OFF \
 	-DSTK_INSTALL_BINARY_DIR=%{_bindir} \
 	-DSTK_INSTALL_DATA_DIR=%{_datadir}/%{name} \
 	-DBUILD_SHARED_LIBS=OFF \
 	-DUSE_SYSTEM_ENET=OFF \
-	-DUSE_SYSTEM_GLEW=ON \
 	-DUSE_SYSTEM_WIIUSE=ON \
 	-DUSE_SYSTEM_ANGELSCRIPT=ON \
+	-DUSE_SYSTEM_SQUISH=ON \
 	-DOpenGL_GL_PREFERENCE=GLVND
 
 %make_build
