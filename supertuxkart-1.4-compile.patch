@@ -1,0 +1,121 @@
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/include/vk_mem_alloc.h.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/include/vk_mem_alloc.h
+--- SuperTuxKart-1.4-src/lib/graphics_engine/include/vk_mem_alloc.h.omv~	2023-08-22 14:10:36.108210653 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/include/vk_mem_alloc.h	2023-08-22 14:11:13.698583401 +0200
+@@ -23,6 +23,8 @@
+ #ifndef AMD_VULKAN_MEMORY_ALLOCATOR_H
+ #define AMD_VULKAN_MEMORY_ALLOCATOR_H
+ 
++#include <stdio.h>
++
+ /** \mainpage Vulkan Memory Allocator
+ 
+ <b>Version 3.0.1 (2022-05-26)</b>
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_spm_buffer.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_spm_buffer.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_spm_buffer.cpp.omv~	2023-08-22 14:15:00.611732464 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_spm_buffer.cpp	2023-08-22 14:15:05.894780768 +0200
+@@ -5,6 +5,7 @@
+ #include "ge_vulkan_features.hpp"
+ 
+ #include <algorithm>
++#include <stdexcept>
+ 
+ namespace GE
+ {
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_array_texture.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_array_texture.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_array_texture.cpp.omv~	2023-08-22 14:11:40.586846722 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_array_texture.cpp	2023-08-22 14:12:04.919082771 +0200
+@@ -12,6 +12,7 @@
+ 
+ #include <IImageLoader.h>
+ #include <cassert>
++#include <stdexcept>
+ 
+ namespace GE
+ {
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_command_loader.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_command_loader.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_command_loader.cpp.omv~	2023-08-22 14:12:18.749216027 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_command_loader.cpp	2023-08-22 14:12:26.790293211 +0200
+@@ -9,6 +9,7 @@
+ #include <memory>
+ #include <mutex>
+ #include <thread>
++#include <stdexcept>
+ 
+ #include "../source/Irrlicht/os.h"
+ 
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_depth_texture.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_depth_texture.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_depth_texture.cpp.omv~	2023-08-22 14:13:12.683729766 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_depth_texture.cpp	2023-08-22 14:13:18.881788228 +0200
+@@ -1,3 +1,5 @@
++#include <stdexcept>
++
+ #include "ge_vulkan_depth_texture.hpp"
+ 
+ #include "ge_main.hpp"
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_draw_call.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_draw_call.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_draw_call.cpp.omv~	2023-08-22 14:12:56.010571927 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_draw_call.cpp	2023-08-22 14:13:02.860636877 +0200
+@@ -25,6 +25,7 @@
+ #include <algorithm>
+ #include <cmath>
+ #include <limits>
++#include <stdexcept>
+ 
+ #include "../source/Irrlicht/os.h"
+ #include "quaternion.h"
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_draw_cell.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_draw_cell.cpp
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_fbo_texture.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_fbo_texture.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_fbo_texture.cpp.omv~	2023-08-22 14:13:33.183922696 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_fbo_texture.cpp	2023-08-22 14:13:39.446981394 +0200
+@@ -6,6 +6,7 @@
+ 
+ #include <array>
+ #include <exception>
++#include <stdexcept>
+ 
+ namespace GE
+ {
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_mesh_cache.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_mesh_cache.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_mesh_cache.cpp.omv~	2023-08-22 14:13:50.225082149 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_mesh_cache.cpp	2023-08-22 14:13:55.321129673 +0200
+@@ -11,6 +11,7 @@
+ #include <algorithm>
+ #include <cassert>
+ #include <vector>
++#include <stdexcept>
+ 
+ namespace GE
+ {
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_skybox_renderer.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_skybox_renderer.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_skybox_renderer.cpp.omv~	2023-08-22 14:14:06.978238117 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_skybox_renderer.cpp	2023-08-22 14:14:12.501289369 +0200
+@@ -12,6 +12,7 @@
+ #include <array>
+ #include <cstdint>
+ #include <unordered_map>
++#include <stdexcept>
+ 
+ namespace GE
+ {
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture.cpp.omv~	2023-08-22 14:14:21.023368290 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture.cpp	2023-08-22 14:14:27.825431146 +0200
+@@ -21,6 +21,7 @@ extern "C"
+ #include <IAttributes.h>
+ #include <IImageLoader.h>
+ #include <limits>
++#include <stdexcept>
+ 
+ namespace GE
+ {
+diff -up SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture_descriptor.cpp.omv~ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture_descriptor.cpp
+--- SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture_descriptor.cpp.omv~	2023-08-22 14:14:39.181535819 +0200
++++ SuperTuxKart-1.4-src/lib/graphics_engine/src/ge_vulkan_texture_descriptor.cpp	2023-08-22 14:14:44.514584862 +0200
+@@ -6,6 +6,7 @@
+ 
+ #include <algorithm>
+ #include <exception>
++#include <stdexcept>
+ 
+ namespace GE
+ {
