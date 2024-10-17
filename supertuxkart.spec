@@ -11,7 +11,7 @@ Version:	1.4
 Release:	4
 License:	GPLv2+
 Group:		Games/Arcade
-Url:		http://supertuxkart.sourceforge.net/
+Url:		https://supertuxkart.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 Source100:	%{name}.rpmlintrc
 Patch0:		https://github.com/supertuxkart/stk-code/commit/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch
