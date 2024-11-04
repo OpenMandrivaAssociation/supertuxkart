@@ -8,7 +8,7 @@
 Summary:	Kart racing game
 Name:		supertuxkart
 Version:	1.4
-Release:	4
+Release:	5
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		https://supertuxkart.sourceforge.net/
