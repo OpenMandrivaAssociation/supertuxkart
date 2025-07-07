@@ -1,21 +1,43 @@
-%ifarch %{ix86}
-%define _disable_ld_no_undefined 1
+#ifarch %{ix86}
+## _disable_ld_no_undefined 1
+## _disable_lto 1
+#endif
+
 %define _disable_lto 1
-%endif
 
 %define tarname SuperTuxKart
+%define repo	stk-code
+%define ver  %{lua: 
+	local y=rpm.expand( '%{version}' )
+	local x=string.gsub( y  , "~", "-")
+	return x
+}
+
+%define BaseName(..)  %{lua: 
+	if #arg == 0 then
+		return ""
+	end 
+	a=arg[1]
+	s=string.gsub(a, '.*/', '')
+	s=string.gsub(s, '.tar.gz', ' ')
+	return s
+}
 
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.4
-Release:	5
+Version:	1.5~rc1
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
-Url:		https://supertuxkart.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
-Source100:	%{name}.rpmlintrc
-Patch0:		https://github.com/supertuxkart/stk-code/commit/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch
-Patch1:		supertuxkart-1.4-compile.patch
+Url:		https://supertuxkart.net/
+Source0:	https://github.com/%{name}/%{repo}/archive/%ver/%{name}-%ver.tar.gz
+# Source1 was retrived from https://sourceforge.net/p/supertuxkart/code/HEAD/tarball?path=/stk-assets
+# and converted to a tar.gz file
+Source1:	supertuxkart-code-r18610-stk-assets.tar.gz
+# ## Source0	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
+# ## Source100	%{name}.rpmlintrc
+# ## Patch0		https://github.com/supertuxkart/stk-code/commit/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch
+# ## Patch1		supertuxkart-1.4-compile.patch
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	mcpp-devel
@@ -59,19 +81,23 @@ tracks and a reworked user interface.
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
-%{_datadir}/metainfo/%{name}.appdata.xml
+#%{_datadir}/metainfo/%{name}.appdata.xml
+%{_datadir}/metainfo/net.%{name}.SuperTuxKart.metainfo.xml
 %{_datadir}/applications/%{name}.desktop
 #{_datadir}/pixmaps/%{name}.png
 
 #----------------------------------------------------------------------------
 
-%prep
-%autosetup -n %{tarname}-%{version}-src -p1
-
+%prep  
+%setup -a 0 -b 1 -n %{repo}-%{ver} 
+pushd ..
+# Changle assets directory so that it may be found by cmake
+mv %{BaseName %{SOURCE1}} stk-assets 
+popd
 # remove bundled library, use system instead.
 rm -rf lib/{jpeglib,libpng,wiiuse,zlib,libsquish,mcpp,angelscript,shaderc}
 
-%build
+%build  
 # Switch to GCC because as of Clang 15.X and SuperTuxKart 1.4, game compiled with clang crashing at launch (after splash screen). GCC fix it.
 #export CC=gcc
 #export CXX=g++
