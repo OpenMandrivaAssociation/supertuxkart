@@ -19,7 +19,7 @@
 	end 
 	a=arg[1]
 	s=string.gsub(a, '.*/', '')
-	s=string.gsub(s, '.tar.gz', ' ')
+	s=string.gsub(s, '.zip', ' ')
 	return s
 }
 
