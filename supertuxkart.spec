@@ -19,21 +19,21 @@
 	end 
 	a=arg[1]
 	s=string.gsub(a, '.*/', '')
-	s=string.gsub(s, '.tar.gz', ' ')
+	s=string.gsub(s, '.zip', ' ')
 	return s
 }
 
 Summary:	Kart racing game
 Name:		supertuxkart
-Version:	1.5~rc1
+Version:	1.5
 Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		https://supertuxkart.net/
-Source0:	https://github.com/%{name}/%{repo}/archive/%ver/%{name}-%ver.tar.gz
+Source0:	https://github.com/supertuxkart/stk-code/releases/download/%{version}/SuperTuxKart-%{version}-src.tar.gz
 # Source1 was retrived from https://sourceforge.net/p/supertuxkart/code/HEAD/tarball?path=/stk-assets
 # and converted to a tar.gz file
-Source1:	supertuxkart-code-r18610-stk-assets.tar.gz
+Source1:	https://sourceforge.net/code-snapshots/svn/s/su/supertuxkart/code/supertuxkart-code-r18621-stk-assets.zip
 # ## Source0	http://downloads.sourceforge.net/supertuxkart/%{tarname}-%{version}-src.tar.xz
 # ## Source100	%{name}.rpmlintrc
 # ## Patch0		https://github.com/supertuxkart/stk-code/commit/0c2b81ac1f9ff29f5012a98f530880b87f416337.patch
@@ -89,7 +89,7 @@ tracks and a reworked user interface.
 #----------------------------------------------------------------------------
 
 %prep  
-%setup -a 0 -b 1 -n %{repo}-%{ver} 
+%setup -a 0 -b 1 -n %{tarname}-%{version}-src
 pushd ..
 # Changle assets directory so that it may be found by cmake
 mv %{BaseName %{SOURCE1}} stk-assets 
