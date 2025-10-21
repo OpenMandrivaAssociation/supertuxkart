@@ -89,7 +89,7 @@ tracks and a reworked user interface.
 #----------------------------------------------------------------------------
 
 %prep  
-%setup -a 0 -b 1 -n %{tarname}-%{version} 
+%setup -a 0 -b 1 -n %{tarname}-%{version}-src
 pushd ..
 # Changle assets directory so that it may be found by cmake
 mv %{BaseName %{SOURCE1}} stk-assets 
